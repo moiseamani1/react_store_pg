@@ -8,7 +8,7 @@ const Legal = () => {
         <Grid container className={classes.root} >
 <div className={classes.row}>
 <div className={classes.legal}>
-        <Typography variant="body1" color="inherit">&copy; 2021 ESSENCE Inc. All right reserved</Typography>
+        <Typography variant="body1" color="inherit">&copy; 2022 ESSENCE Inc. All right reserved</Typography>
         </div>
         <div className={classes.legal}>
         <Typography variant="body1" display="inline" color="inherit" to="/">Terms and Conditions</Typography>
