@@ -39,14 +39,17 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 </Typography>
 <Typography variant="subtitle" gutterBottom>
     customersupport@essence.ca
-</Typography></div>
+    {/* +1 123-456-789 */}
+    </Typography></div>
 
-<div className={classes.contactInfo}><Typography variant="h6" gutterBottom>
+<div className={classes.contactInfo}>
+    <Typography variant="h6" gutterBottom>
     Telephone
 </Typography>
 <Typography variant="subtitle" gutterBottom>
     +1 123-456-789
-</Typography></div>
+</Typography>
+</div>
 
         </div>
         

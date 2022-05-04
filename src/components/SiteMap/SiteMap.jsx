@@ -2,12 +2,12 @@ import React,{useState} from 'react'
 import {Grid,Typography,List,ListItem,TextField,InputAdornment,IconButton} from '@material-ui/core';
 import { Facebook, Instagram,Twitter,LinkedIn,GitHub,ArrowForwardIos } from '@material-ui/icons';
 import useStyles from './styles';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import MailchimpSubscribe from "react-mailchimp-subscribe"
 
 const SiteMap = () => {
 
-    // sm={6} md={4} lg={4}
+    
     const classes=useStyles();
     const sitemap={"Contact Us":"/contact","FAQ":"/faq","Returns & Exchanges":"/returns","Shipping":"/shipping","Track Order":"/track"}
 
@@ -43,7 +43,7 @@ const submit = (event,subscribe) =>{
       <Grid item xs={12} sm={6} md={3} lg={3}>
         <List className={classes.list}>
             <ListItem className={classes.listItem}><Typography variant="h6" color="inherit" >Stay connected with us</Typography></ListItem>
-            <ListItem className={classes.listItem}><Facebook /><Instagram /><Twitter /><LinkedIn className={classes.social} onClick={()=>(window.open("https://www.linkedin.com/in/moise-amani", '_blank'))}/>
+            <ListItem className={classes.listItem} style={{display:"flex",flexWrap:"row"}}><Facebook /><Instagram /><Twitter /><LinkedIn className={classes.social} onClick={()=>(window.open("https://www.linkedin.com/in/moise-amani", '_blank'))}/>
             <GitHub className={classes.social} onClick={()=>(window.open("https://github.com/moiseamani1", '_blank'))}/></ListItem>
         </List>
         </Grid>

@@ -12,7 +12,7 @@ export default makeStyles((theme) => ({
       },
       listItem:{
         display:"flex",
-        width:"20rem",
+        // width:"20rem",
         color:"#f9f9f9",
         textDecoration:"none"
       },

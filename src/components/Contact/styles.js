@@ -27,7 +27,8 @@ export default makeStyles((theme) => ({
   
   },
   contactInfo:{
-      marginTop:"2rem"
+      marginTop:"2rem",
+      
   },
   directions:{
     marginTop:"1rem"

@@ -151,7 +151,7 @@ const App=()=>{
   
   useEffect(() => {
     const script = document.createElement('script');
-    script.src = "https://js.squareupsandbox.com/v2/paymentform";
+    script.src = "https://js.squareup.com/v2/paymentform";
     script.type="text/javascript"
     script.async=false;
     script.onload=()=>{
