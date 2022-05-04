@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {commerce} from '../../lib/commerce'
+
 
 const styles = {
   name: {
@@ -53,9 +53,12 @@ export default class Square extends Component {
   }
 
   componentDidMount(){
+
+
     const config = {
-      applicationId: process.env.REACT_APP_SQUARE_APP_ID,
-      locationId: process.env.REACT_APP_SQUARE_LOCATION_ID,
+      
+      applicationId: this.props.checkoutToken.gateways.square.settings.application_id,
+      locationId: this.props.checkoutToken.gateways.square.settings.location_id,
       inputClass: "sq-input",
       autoBuild: false,
       inputStyles: [
@@ -163,23 +166,35 @@ export default class Square extends Component {
               }
           };
           console.log(this.props.checkoutToken)
-        commerce.checkout.capture(this.props.checkoutToken.id, orderData).catch((err) => {
-            alert('Network error: ' + JSON.stringify(err));
-          }).then((response) => {
-            if (!response.ok) {
-              return response.json().then((errorInfo) => Promise.reject(errorInfo));
-            }
-            return response.json();
-          }).then((order) => {
-            // Payment and order capture was successful, and the order detail is provide in the order variable.
-            console.log(order);
-            alert('Payment completed successfully!\nCheck browser developer console for more details');
-            this.props.nextStep()
-          }).catch((err) => {
-            // Error handling for when the payment fails with Square
-            console.error(err);
-            alert('Payment failed to complete!\nCheck browser developer console for more details');
-          })
+
+          this.props.onCaptureCheckout(this.props.checkoutToken.id, orderData,true).then(
+            val=>{this.props.nextStep()}
+          )
+          
+
+
+        // commerce.checkout.capture(this.props.checkoutToken.id, orderData)
+        // .catch((err) => {
+        //     alert('Network error: ' + JSON.stringify(err));
+        //   })
+        //   .then((response) => {
+        //     if (!response.ok) {
+        //       return response.json().then((errorInfo) => Promise.reject(errorInfo));
+        //     }
+        //     return response.json();
+        //   })
+        //   .then((order) => {
+        //     // Payment and order capture was successful, and the order detail is provide in the order variable.
+        //     console.log(order);
+        //     alert('Payment completed successfully!\nCheck browser developer console for more details');
+        //     this.props.nextStep()
+        //   }).catch((err) => {
+        //     // Error handling for when the payment fails with Square
+        //     console.error(err);
+        //     alert('Payment failed to complete!\nCheck browser developer console for more details');
+        //   })
+
+
         }
           ,
 

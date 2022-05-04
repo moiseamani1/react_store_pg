@@ -32,7 +32,8 @@ const Checkout = ({cart,onCaptureCheckout,error,order,loaded}) => {
                 setCheckoutToken(token)
             }catch(err){
               console.log(err)
-                history.push('/')
+              //TODO FIX error handling
+              //history.push('/')
             }
         }
         generateToken()
@@ -41,11 +42,6 @@ const Checkout = ({cart,onCaptureCheckout,error,order,loaded}) => {
 
     },[cart])
 
-    const timeout=()=>{
-        setTimeout(()=>{
-            
-        },5000)
-    }
     const next = (data) => {
         setShippingData(data);
     
