@@ -1,7 +1,6 @@
-
-import React,{useEffect,useStae} from 'react';
-import {Grid} from '@material-ui/core'
-import Product from "./Product/Product"
+import React, { useEffect, useStae } from 'react';
+import { Grid } from '@material-ui/core';
+import Product from './Product/Product';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
@@ -13,39 +12,33 @@ import useStyles from './styles';
 
 // ]
 
+const Products = ({ products, addToCart, handleSort, selectedOption }) => {
+  const classes = useStyles();
 
-const Products=({products,addToCart,handleSort,selectedOption})=>{
-    const classes=useStyles();
+  const options = ['Latest arrivals', 'Highest to Lowest', 'Lowest to Highest'];
 
-    const options = [
-        'Latest arrivals', 'Highest to Lowest', 'Lowest to Highest'
-      ];
+  useEffect(() => {}, [products]);
 
-      
-     
-      useEffect(() => {
-        
-    }, [products])
- 
-
-
-
-   
-    return(
+  return (
     <main className={classes.content}>
-        <div className={classes.toolbar}></div>
-        <Dropdown className={classes.sort} options={options} onChange={handleSort}  value={selectedOption} placeholder="Select an option" />
-        
-        <Grid container justify="center" >
-            {products.map((product)=>(
-                <Grid item key={product.id} xs={6} sm={6} md={4} lg={3}>
-                    <Product product={product} addToCart={addToCart}></Product>
-                </Grid>
-            ))}
+      <div className={classes.toolbar}></div>
+      <Dropdown
+        className={classes.sort}
+        options={options}
+        onChange={handleSort}
+        value={selectedOption}
+        placeholder="Select an option"
+      />
 
-        </Grid>
+      <Grid container justify="center">
+        {products.map((product) => (
+          <Grid item key={product.id} xs={6} sm={6} md={4} lg={3}>
+            <Product product={product} addToCart={addToCart}></Product>
+          </Grid>
+        ))}
+      </Grid>
+    </main>
+  );
+};
 
-    </main>)
-}
-
-export default Products
+export default Products;

@@ -6,23 +6,17 @@ export default makeStyles((theme) => ({
   appBar: {
     boxShadow: 'none',
     borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
-    width:"100%",
-    padding:0,
-    margin:0,
+    width: '100%',
+    padding: 0,
+    margin: 0,
     // [theme.breakpoints.up('sm')]: {
     //   width: `calc(100% - ${drawerWidth}px)`,
     //   marginLeft: drawerWidth,
     // },
   },
-  toolbar:{
-  
+  toolbar: {
     // paddingRight: "79px",
     // paddingLeft: "118px",
-    
-    
-    
-    
-
   },
   title: {
     fontFamily: "Playfair Display', serif",
@@ -30,20 +24,18 @@ export default makeStyles((theme) => ({
     display: 'flex',
     textDecoration: 'none',
   },
-  nav_links:{
-    margin:'auto 0.4rem auto 0.4rem',
-    "@media (max-width: 900px)": {
-      margin:'auto 0rem auto 0rem',
+  nav_links: {
+    margin: 'auto 0.4rem auto 0.4rem',
+    '@media (max-width: 900px)': {
+      margin: 'auto 0rem auto 0rem',
     },
     alignItems: 'center',
     display: 'flex',
-    textDecoration: 'none',}
-    ,
-
-  drawerContainer:{
-    padding: "20px 30px",
-
-    },
+    textDecoration: 'none',
+  },
+  drawerContainer: {
+    padding: '20px 30px',
+  },
 
   image: {
     marginRight: '10px',

@@ -4,11 +4,7 @@ export default makeStyles(() => ({
   media: {
     height: 300,
   },
-  cardContent: {
-   
-   
-    
-  },
+  cardContent: {},
   cartActions: {
     justifyContent: 'space-between',
   },

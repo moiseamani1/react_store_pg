@@ -1,120 +1,114 @@
 import React, { Component } from 'react';
 
-
 const styles = {
   name: {
     verticalAlign: 'top',
     display: 'none',
-    width:"60%",
+    width: '60%',
     margin: 0,
     border: 'none',
-    fontSize: "16px",
-    fontFamily: "Helvetica Neue",
-    padding: "16px",
-    color: "#373F4A",
-    backgroundColor: "transparent",
-    lineHeight: "1.15em",
-    placeholderColor: "#000",
-    _webkitFontSmoothing: "antialiased",
-    _mozOsxFontSmoothing: "grayscale",
+    fontSize: '16px',
+    fontFamily: 'Helvetica Neue',
+    padding: '16px',
+    color: '#373F4A',
+    backgroundColor: 'transparent',
+    lineHeight: '1.15em',
+    placeholderColor: '#000',
+    _webkitFontSmoothing: 'antialiased',
+    _mozOsxFontSmoothing: 'grayscale',
   },
   leftCenter: {
     float: 'left',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   blockRight: {
     display: 'block',
-    float: 'right'
+    float: 'right',
   },
   center: {
-    textAlign: 'center'
-  }
-}
+    textAlign: 'center',
+  },
+};
 
 export default class Square extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    
+
     this.state = {
-      cardBrand: "",
+      cardBrand: '',
       nonce: undefined,
       googlePay: false,
       applePay: false,
-      masterpass: false
-    }
+      masterpass: false,
+    };
     this.requestCardNonce = this.requestCardNonce.bind(this);
-    
-
   }
 
-  
-  requestCardNonce(){
+  requestCardNonce() {
     this.paymentForm.requestCardNonce();
   }
 
-  componentDidMount(){
-
-
+  componentDidMount() {
     const config = {
-      
-      applicationId: this.props.checkoutToken.gateways.square.settings.application_id,
+      applicationId:
+        this.props.checkoutToken.gateways.square.settings.application_id,
       locationId: this.props.checkoutToken.gateways.square.settings.location_id,
-      inputClass: "sq-input",
+      inputClass: 'sq-input',
       autoBuild: false,
       inputStyles: [
         {
-          fontSize: "16px",
-          fontFamily: "Helvetica Neue",
-          padding: "16px",
-          color: "#373F4A",
-          backgroundColor: "transparent",
-          lineHeight: "1.15em",
-          placeholderColor: "#000",
-          _webkitFontSmoothing: "antialiased",
-          _mozOsxFontSmoothing: "grayscale"
-        }
+          fontSize: '16px',
+          fontFamily: 'Helvetica Neue',
+          padding: '16px',
+          color: '#373F4A',
+          backgroundColor: 'transparent',
+          lineHeight: '1.15em',
+          placeholderColor: '#000',
+          _webkitFontSmoothing: 'antialiased',
+          _mozOsxFontSmoothing: 'grayscale',
+        },
       ],
       applePay: {
-        elementId: 'sq-apple-pay'
+        elementId: 'sq-apple-pay',
       },
       masterpass: {
-        elementId: 'sq-masterpass'
+        elementId: 'sq-masterpass',
       },
       googlePay: {
-        elementId: 'sq-google-pay'
+        elementId: 'sq-google-pay',
       },
       cardNumber: {
-        elementId: "sq-card-number",
-        placeholder: "• • • •  • • • •  • • • •  • • • •"
+        elementId: 'sq-card-number',
+        placeholder: '• • • •  • • • •  • • • •  • • • •',
       },
       cvv: {
-        elementId: "sq-cvv",
-        placeholder: "CVV"
+        elementId: 'sq-cvv',
+        placeholder: 'CVV',
       },
       expirationDate: {
-        elementId: "sq-expiration-date",
-        placeholder: "MM/YY"
+        elementId: 'sq-expiration-date',
+        placeholder: 'MM/YY',
       },
       postalCode: {
-        elementId: "sq-postal-code",
-        placeholder: "Zip"
+        elementId: 'sq-postal-code',
+        placeholder: 'Zip',
       },
       callbacks: {
         methodsSupported: (methods) => {
-          if(methods.googlePay){
+          if (methods.googlePay) {
             this.setState({
-              googlePay: methods.googlePay
-            })
+              googlePay: methods.googlePay,
+            });
           }
-          if(methods.applePay){
+          if (methods.applePay) {
             this.setState({
-              applePay: methods.applePay
-            })
+              applePay: methods.applePay,
+            });
           }
-          if(methods.masterpass){
+          if (methods.masterpass) {
             this.setState({
-              masterpass: methods.masterpass
-            })
+              masterpass: methods.masterpass,
+            });
           }
           return;
         },
@@ -122,137 +116,149 @@ export default class Square extends Component {
           return {
             requestShippingAddress: false,
             requestBillingInfo: true,
-            currencyCode: "CAD",
-            countryCode: "CA",
+            currencyCode: 'CAD',
+            countryCode: 'CA',
             total: {
-              label: "Essence",
+              label: 'Essence',
               amount: this.props.checkoutToken.live.total.raw.toString(),
-              pending: false
+              pending: false,
             },
             lineItems: [
               {
-                label: "Subtotal",
+                label: 'Subtotal',
                 amount: this.props.checkoutToken.live.total.raw.toString(),
-                pending: false
-              }
-            ]
+                pending: false,
+              },
+            ],
           };
         },
         cardNonceResponseReceived: (errors, nonce, cardData) => {
           if (errors) {
             // Log errors from nonce generation to the Javascript console
-            console.log("Encountered errors:");
-            errors.forEach(function(error) {
-              console.log("  " + error.message);
+            console.log('Encountered errors:');
+            errors.forEach(function (error) {
+              console.log('  ' + error.message);
             });
 
             return;
           }
           this.setState({
-            nonce: nonce
-          })
+            nonce: nonce,
+          });
 
-
-
-          console.log(nonce)
+          console.log(nonce);
           const orderData = {
             line_items: this.props.checkoutToken.live.line_items,
-            customer: { firstname: this.props.shippingData.firstName, lastname: this.props.shippingData.lastName, email: this.props.shippingData.email },
-            shipping: { name: 'International', street: this.props.shippingData.address1, town_city: this.props.shippingData.city, county_state: this.props.shippingData.shippingSubdivision, postal_zip_code: this.props.shippingData.zip, country: this.props.shippingData.shippingCountry },
-            fulfillment: { shipping_method: this.props.shippingData.shippingOption },
+            customer: {
+              firstname: this.props.shippingData.firstName,
+              lastname: this.props.shippingData.lastName,
+              email: this.props.shippingData.email,
+            },
+            shipping: {
+              name: 'International',
+              street: this.props.shippingData.address1,
+              town_city: this.props.shippingData.city,
+              county_state: this.props.shippingData.shippingSubdivision,
+              postal_zip_code: this.props.shippingData.zip,
+              country: this.props.shippingData.shippingCountry,
+            },
+            fulfillment: {
+              shipping_method: this.props.shippingData.shippingOption,
+            },
             payment: {
-                gateway: 'square',
-                card: { nonce },
-              }
+              gateway: 'square',
+              card: { nonce },
+            },
           };
-          console.log(this.props.checkoutToken)
+          console.log(this.props.checkoutToken);
 
-          this.props.onCaptureCheckout(this.props.checkoutToken.id, orderData,true).then(
-            val=>{this.props.nextStep()}
-          )
-          
+          this.props
+            .onCaptureCheckout(this.props.checkoutToken.id, orderData, true)
+            .then((val) => {
+              this.props.nextStep();
+            });
 
-
-        // commerce.checkout.capture(this.props.checkoutToken.id, orderData)
-        // .catch((err) => {
-        //     alert('Network error: ' + JSON.stringify(err));
-        //   })
-        //   .then((response) => {
-        //     if (!response.ok) {
-        //       return response.json().then((errorInfo) => Promise.reject(errorInfo));
-        //     }
-        //     return response.json();
-        //   })
-        //   .then((order) => {
-        //     // Payment and order capture was successful, and the order detail is provide in the order variable.
-        //     console.log(order);
-        //     alert('Payment completed successfully!\nCheck browser developer console for more details');
-        //     this.props.nextStep()
-        //   }).catch((err) => {
-        //     // Error handling for when the payment fails with Square
-        //     console.error(err);
-        //     alert('Payment failed to complete!\nCheck browser developer console for more details');
-        //   })
-
-
-        }
-          ,
-
-        unsupportedBrowserDetected: () => {
+          // commerce.checkout.capture(this.props.checkoutToken.id, orderData)
+          // .catch((err) => {
+          //     alert('Network error: ' + JSON.stringify(err));
+          //   })
+          //   .then((response) => {
+          //     if (!response.ok) {
+          //       return response.json().then((errorInfo) => Promise.reject(errorInfo));
+          //     }
+          //     return response.json();
+          //   })
+          //   .then((order) => {
+          //     // Payment and order capture was successful, and the order detail is provide in the order variable.
+          //     console.log(order);
+          //     alert('Payment completed successfully!\nCheck browser developer console for more details');
+          //     this.props.nextStep()
+          //   }).catch((err) => {
+          //     // Error handling for when the payment fails with Square
+          //     console.error(err);
+          //     alert('Payment failed to complete!\nCheck browser developer console for more details');
+          //   })
         },
+        unsupportedBrowserDetected: () => {},
         inputEventReceived: (inputEvent) => {
           switch (inputEvent.eventType) {
-            case "focusClassAdded":
+            case 'focusClassAdded':
               break;
-            case "focusClassRemoved":
+            case 'focusClassRemoved':
               break;
-            case "errorClassAdded":
-              document.getElementById("error").innerHTML =
-                "Please fix card information errors before continuing.";
+            case 'errorClassAdded':
+              document.getElementById('error').innerHTML =
+                'Please fix card information errors before continuing.';
               break;
-            case "errorClassRemoved":
-              document.getElementById("error").style.display = "none";
+            case 'errorClassRemoved':
+              document.getElementById('error').style.display = 'none';
               break;
-            case "cardBrandChanged":
-              if(inputEvent.cardBrand !== "unknown"){
+            case 'cardBrandChanged':
+              if (inputEvent.cardBrand !== 'unknown') {
                 this.setState({
-                  cardBrand: inputEvent.cardBrand
-                })
+                  cardBrand: inputEvent.cardBrand,
+                });
               } else {
                 this.setState({
-                  cardBrand: ""
-                })
+                  cardBrand: '',
+                });
               }
               break;
-            case "postalCodeChanged":
+            case 'postalCodeChanged':
               break;
             default:
               break;
           }
         },
-        paymentFormLoaded: function() {
-          document.getElementById('name').style.display = "inline-flex";
-        }
-      }
+        paymentFormLoaded: function () {
+          document.getElementById('name').style.display = 'inline-flex';
+        },
+      },
     };
     this.paymentForm = new this.props.paymentForm(config);
     this.paymentForm.build();
   }
 
-  render(){
+  render() {
     return (
       <div className="sq-container">
         <div id="form-container">
           <div id="sq-walletbox">
-            <button style={{display: (this.state.applePay) ? 'inherit': 'none'}}
-                    className="wallet-button"
-                    id="sq-apple-pay"></button>
-            <button style={{display: (this.state.masterpass) ? 'block': 'none'}}
-                    className="wallet-button"
-                    id="sq-masterpass"></button>
-            <button style={{display: (this.state.googlePay) ? 'inherit': 'none'}}
-                    className="wallet-button"
-                    id="sq-google-pay"></button>
+            <button
+              style={{ display: this.state.applePay ? 'inherit' : 'none' }}
+              className="wallet-button"
+              id="sq-apple-pay"
+            ></button>
+            <button
+              style={{ display: this.state.masterpass ? 'block' : 'none' }}
+              className="wallet-button"
+              id="sq-masterpass"
+            ></button>
+            <button
+              style={{ display: this.state.googlePay ? 'inherit' : 'none' }}
+              className="wallet-button"
+              id="sq-google-pay"
+            ></button>
             <hr />
           </div>
 
@@ -266,9 +272,10 @@ export default class Square extends Component {
             <div id="cc-field-wrapper">
               <div id="sq-card-number"></div>
               <input type="hidden" id="card-nonce" name="nonce" />
-              <div id="inline-sq"><div id="sq-expiration-date"></div>
-              <div id="sq-cvv"></div></div>
-              
+              <div id="inline-sq">
+                <div id="sq-expiration-date"></div>
+                <div id="sq-cvv"></div>
+              </div>
             </div>
             <input
               id="name"
@@ -278,11 +285,15 @@ export default class Square extends Component {
             />
             <div id="sq-postal-code"></div>
           </div>
-          <button className="button-credit-card"
-                  onClick={this.requestCardNonce}>Pay</button>
+          <button
+            className="button-credit-card"
+            onClick={this.requestCardNonce}
+          >
+            Pay
+          </button>
         </div>
         <p style={styles.center} id="error"></p>
       </div>
-    )
+    );
   }
 }

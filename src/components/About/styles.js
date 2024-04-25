@@ -2,15 +2,13 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
-  
+
   content: {
     // flexGrow: 1,
-    minHeight:"100vh",
+    minHeight: '100vh',
     backgroundColor: theme.palette.background.default,
-   
-   
-   padding: theme.spacing(3),
-   
+
+    padding: theme.spacing(3),
   },
   root: {
     flexGrow: 1,
@@ -20,13 +18,11 @@ export default makeStyles((theme) => ({
     // paddingTop: '56.25%', // 16:9
     paddingTop: '95%',
   },
-  gridSection:{
-    padding:"2rem"
+  gridSection: {
+    padding: '2rem',
   },
-  location:{
+  location: {
     borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
-    float:"right"
-  
-  }
-  
+    float: 'right',
+  },
 }));
