@@ -5,17 +5,18 @@ import {
   Typography,
   TextField,
   Button,
-  createMuiTheme,
+  createTheme,
   responsiveFontSizes,
   ThemeProvider,
-} from '@material-ui/core';
+  StyledEngineProvider,
+} from '@mui/material';
 
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@mui/styles/withStyles';
 
 const Track = () => {
   const classes = useStyles();
 
-  let theme = createMuiTheme();
+  let theme = createTheme();
   theme = responsiveFontSizes(theme);
   const TrackButton = withStyles({
     root: {
@@ -48,87 +49,89 @@ const Track = () => {
   return (
     <main className={classes.content}>
       <div className={classes.toolbar}></div>
-      <ThemeProvider theme={theme}>
-        <Typography className={classes.location} variant="h2" gutterBottom>
-          Track Order
-        </Typography>
-        <Grid container justify="center">
-          <Grid item xs={12} sm={6} md={4} lg={4}>
-            <div className={classes.gridSection}>
-              <form className={classes.root} noValidate autoComplete="off">
-                <div>
-                  {' '}
-                  <Typography variant="subtitle1" gutterBottom>
-                    Option 1
-                  </Typography>
-                </div>
-                <div>
-                  {' '}
-                  <TextField
-                    className={classes.margin}
-                    required
-                    id="standard-required"
-                    label="Email"
-                    type={'email'}
-                    placeholder="e.g john.doe@hotmail.com"
-                  />
-                </div>
-                <div>
-                  <TextField
-                    className={classes.textField}
-                    required
-                    id="standard-required"
-                    label="Order number"
-                  />
-                </div>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <Typography className={classes.location} variant="h2" gutterBottom>
+            Track Order
+          </Typography>
+          <Grid container justifyContent="center">
+            <Grid item xs={12} sm={6} md={4} lg={4}>
+              <div className={classes.gridSection}>
+                <form className={classes.root} noValidate autoComplete="off">
+                  <div>
+                    {' '}
+                    <Typography variant="subtitle1" gutterBottom>
+                      Option 1
+                    </Typography>
+                  </div>
+                  <div>
+                    {' '}
+                    <TextField
+                      className={classes.margin}
+                      required
+                      id="standard-required"
+                      label="Email"
+                      type={'email'}
+                      placeholder="e.g john.doe@hotmail.com"
+                    />
+                  </div>
+                  <div>
+                    <TextField
+                      className={classes.textField}
+                      required
+                      id="standard-required"
+                      label="Order number"
+                    />
+                  </div>
 
-                <div>
-                  {' '}
-                  <TrackButton
-                    className={classes.margin}
-                    variant="contained"
-                    color="primary"
-                  >
-                    Track
-                  </TrackButton>
-                </div>
-              </form>
-            </div>
+                  <div>
+                    {' '}
+                    <TrackButton
+                      className={classes.margin}
+                      variant="contained"
+                      color="primary"
+                    >
+                      Track
+                    </TrackButton>
+                  </div>
+                </form>
+              </div>
+            </Grid>
+
+            <Grid item xs={12} sm={6} md={4} lg={4}>
+              <div className={classes.gridSection}>
+                <form className={classes.root} noValidate autoComplete="off">
+                  <div>
+                    {' '}
+                    <Typography variant="subtitle1" gutterBottom>
+                      Option 2
+                    </Typography>
+                  </div>
+                  <div>
+                    <TextField
+                      className={classes.textField}
+                      required
+                      id="standard-required"
+                      label="Tracking number"
+                    />
+                  </div>
+
+                  <div>
+                    {' '}
+                    <TrackButton
+                      className={classes.margin}
+                      variant="contained"
+                      color="primary"
+                    >
+                      Track
+                    </TrackButton>
+                  </div>
+                </form>
+              </div>
+            </Grid>
           </Grid>
-
-          <Grid item xs={12} sm={6} md={4} lg={4}>
-            <div className={classes.gridSection}>
-              <form className={classes.root} noValidate autoComplete="off">
-                <div>
-                  {' '}
-                  <Typography variant="subtitle1" gutterBottom>
-                    Option 2
-                  </Typography>
-                </div>
-                <div>
-                  <TextField
-                    className={classes.textField}
-                    required
-                    id="standard-required"
-                    label="Tracking number"
-                  />
-                </div>
-
-                <div>
-                  {' '}
-                  <TrackButton
-                    className={classes.margin}
-                    variant="contained"
-                    color="primary"
-                  >
-                    Track
-                  </TrackButton>
-                </div>
-              </form>
-            </div>
-          </Grid>
-        </Grid>
-      </ThemeProvider>
+        </ThemeProvider>
+      </StyledEngineProvider>
     </main>
   );
 };

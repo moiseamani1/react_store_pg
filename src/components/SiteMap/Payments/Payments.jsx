@@ -1,7 +1,7 @@
 import React from 'react';
 
 import useStyles from './styles';
-import { Grid, Icon, ListItem } from '@material-ui/core';
+import { Grid, Icon, ListItem } from '@mui/material';
 
 const Payments = () => {
   const classes = useStyles();
@@ -15,7 +15,7 @@ const Payments = () => {
   };
   return (
     <Grid container className={classes.root}>
-      <Grid container justify={'center'} direction="row">
+      <Grid container justifyContent={'center'} direction="row">
         {Object.entries(types).map(([key, value]) => (
           <div className={classes.payments}>
             <Icon classes={{ root: classes.iconRoot }}>

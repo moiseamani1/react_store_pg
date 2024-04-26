@@ -8,8 +8,8 @@ import {
   Drawer,
   MenuItem,
   Link as Lk,
-} from '@material-ui/core';
-import { ShoppingCart, Search, PersonOutline, Menu } from '@material-ui/icons';
+} from '@mui/material';
+import { ShoppingCart, Search, PersonOutline, Menu } from '@mui/icons-material';
 import { Link, useLocation } from 'react-router-dom';
 
 import useStyles from './styles';
@@ -100,7 +100,7 @@ const Navbar = ({ totalItems }) => {
             color="inherit"
             component={Link}
             to="/cart"
-          >
+            size="large">
             <PersonOutline></PersonOutline>
           </IconButton>
         </div>
@@ -112,7 +112,7 @@ const Navbar = ({ totalItems }) => {
               color="inherit"
               component={Link}
               to="/cart"
-            >
+              size="large">
               <Badge badgeContent={totalItems} color="secondary">
                 <ShoppingCart></ShoppingCart>
               </Badge>
@@ -128,7 +128,7 @@ const Navbar = ({ totalItems }) => {
               color="inherit"
               component={Link}
               to="/search"
-            >
+              size="large">
               <Search></Search>
             </IconButton>
           ) : (
@@ -155,7 +155,7 @@ const Navbar = ({ totalItems }) => {
             'aria-haspopup': 'true',
             onClick: handleDrawerOpen,
           }}
-        >
+          size="large">
           <Menu />
         </IconButton>
         <Drawer
@@ -180,7 +180,7 @@ const Navbar = ({ totalItems }) => {
             color="inherit"
             component={Link}
             to="/cart"
-          >
+            size="large">
             <PersonOutline></PersonOutline>
           </IconButton>
         </div>
@@ -192,7 +192,7 @@ const Navbar = ({ totalItems }) => {
               color="inherit"
               component={Link}
               to="/cart"
-            >
+              size="large">
               <Badge badgeContent={totalItems} color="secondary">
                 <ShoppingCart></ShoppingCart>
               </Badge>
@@ -208,7 +208,7 @@ const Navbar = ({ totalItems }) => {
               color="inherit"
               component={Link}
               to="/search"
-            >
+              size="large">
               <Search></Search>
             </IconButton>
           ) : (

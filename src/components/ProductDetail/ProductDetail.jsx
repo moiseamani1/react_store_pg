@@ -9,7 +9,7 @@ import {
   Button,
   CardMedia,
   CircularProgress,
-} from '@material-ui/core';
+} from '@mui/material';
 import { useParams } from 'react-router-dom';
 import Related from './Related/Related';
 
@@ -36,7 +36,7 @@ const ProductDetail = ({ addToCart }) => {
 
   useEffect(() => {
     fetchProduct();
-  }, [loading, product]);
+  }, [productId]);
 
   return (
     <main className={classes.content}>

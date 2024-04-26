@@ -7,7 +7,7 @@ import {
   TextField,
   InputAdornment,
   IconButton,
-} from '@material-ui/core';
+} from '@mui/material';
 import {
   Facebook,
   Instagram,
@@ -15,7 +15,7 @@ import {
   LinkedIn,
   GitHub,
   ArrowForwardIos,
-} from '@material-ui/icons';
+} from '@mui/icons-material';
 import useStyles from './styles';
 import { Link } from 'react-router-dom';
 import MailchimpSubscribe from 'react-mailchimp-subscribe';
@@ -39,7 +39,7 @@ const SiteMap = () => {
 
   return (
     <Grid container className={classes.root}>
-      <Grid container justify={'center'} direction="row">
+      <Grid container justifyContent={'center'} direction="row">
         <Grid item xs={12} sm={6} md={3} lg={3}>
           <List className={classes.list}>
             <ListItem className={classes.listItem}>
@@ -48,7 +48,7 @@ const SiteMap = () => {
               </Typography>
             </ListItem>
             {Object.entries(sitemap).map(([key, value]) => (
-              <ListItem className={classes.listItem}>
+              <ListItem key={key} className={classes.listItem}>
                 <Typography
                   variant="body1"
                   color="inherit"
@@ -65,7 +65,7 @@ const SiteMap = () => {
           <List className={classes.list}>
             <ListItem className={classes.listItem}>
               <Typography variant="h6" color="inherit" to="/">
-                About Retrendz
+                About Essence
               </Typography>
             </ListItem>
             <ListItem className={classes.listItem}>
@@ -137,7 +137,7 @@ const SiteMap = () => {
                                 type="submit"
                                 aria-label="delete"
                                 className={classes.newsletterButton}
-                              >
+                                size="large">
                                 <ArrowForwardIos />
                               </IconButton>
                             </InputAdornment>

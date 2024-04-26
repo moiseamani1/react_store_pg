@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 
 export default makeStyles((theme) => ({
   root: {
@@ -20,7 +20,7 @@ export default makeStyles((theme) => ({
     cursor: 'pointer',
   },
   control: {
-    padding: theme.spacing(2),
+    padding: '1rem',
   },
   newsletterButton: {
     color: '#f0f0f0',

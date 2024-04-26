@@ -1,22 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import useStyles from './styles';
-import { Grid, responsiveFontSizes, Typography } from '@material-ui/core';
-import Carousel from 'react-grid-carousel';
+import { Grid, responsiveFontSizes, Typography } from '@mui/material';
+import Carousel from 'react-multi-carousel';
+import "react-multi-carousel/lib/styles.css";
 import Product from '../../Products/Product/Product';
+
 
 const Related = ({ related, addToCart }) => {
   const classes = useStyles();
-
-  const responsiveLayout = [
-    {
-      // breakpoint: 800,
-      cols: 4,
-      rows: 1,
-      gap: 10,
-      loop: true,
-      autoplay: undefined,
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5
     },
-  ];
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1
+    }
+  };
 
   return (
     <>
@@ -31,11 +41,11 @@ const Related = ({ related, addToCart }) => {
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <Carousel cols={4} rows={1} gap={10} loop>
+          <Carousel responsive={responsive}>
             {related.map((product) => (
-              <Carousel.Item key={product.id}>
+              <div key={product.id}>
                 <Product product={product} addToCart={addToCart}></Product>
-              </Carousel.Item>
+              </div>
             ))}
           </Carousel>
         </Grid>

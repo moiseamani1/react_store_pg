@@ -3,10 +3,11 @@ import {
   Typography,
   Button,
   Grid,
-  createMuiTheme,
+  createTheme,
   responsiveFontSizes,
   ThemeProvider,
-} from '@material-ui/core';
+  StyledEngineProvider,
+} from '@mui/material';
 
 import useStyles from './styles';
 import CartItem from './CartItem/CartItem';
@@ -15,7 +16,7 @@ import { Link } from 'react-router-dom';
 const Cart = ({ cart, onEmptyCart, onUpdateCartQty, onRemoveFromCart }) => {
   const classes = useStyles();
 
-  let theme = createMuiTheme();
+  let theme = createTheme();
   theme = responsiveFontSizes(theme);
 
   if (!cart.line_items) return 'Loading';
@@ -23,20 +24,24 @@ const Cart = ({ cart, onEmptyCart, onUpdateCartQty, onRemoveFromCart }) => {
   const isEmpty = !cart.line_items.length;
 
   const EmptyCart = () => (
-    <ThemeProvider theme={theme}>
-      <Typography variant="subtitle1">
-        There are no items in your shopping cart
-      </Typography>
-    </ThemeProvider>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <Typography variant="subtitle1">
+          There are no items in your shopping cart
+        </Typography>
+      </ThemeProvider>
+    </StyledEngineProvider>
   );
   const FilledCart = () => (
     <>
       <div className={classes.cardDetails}>
-        <ThemeProvider theme={theme}>
-          <Typography variant="h4">
-            Subtotal: {cart.subtotal.formatted_with_symbol}
-          </Typography>
-        </ThemeProvider>
+        <StyledEngineProvider injectFirst>
+          <ThemeProvider theme={theme}>
+            <Typography variant="h4">
+              Subtotal: {cart.subtotal.formatted_with_symbol}
+            </Typography>
+          </ThemeProvider>
+        </StyledEngineProvider>
 
         <div>
           <Button
@@ -81,12 +86,14 @@ const Cart = ({ cart, onEmptyCart, onUpdateCartQty, onRemoveFromCart }) => {
   return (
     <main className={classes.content}>
       <div className={classes.toolbar}></div>
-      <ThemeProvider theme={theme}>
-        <Typography className={classes.location} variant="h2" gutterBottom>
-          Your Shopping Cart
-        </Typography>
-      </ThemeProvider>
-      <Grid container justify="center">
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <Typography className={classes.location} variant="h2" gutterBottom>
+            Your Shopping Cart
+          </Typography>
+        </ThemeProvider>
+      </StyledEngineProvider>
+      <Grid container justifyContent="center">
         {isEmpty ? <EmptyCart></EmptyCart> : <FilledCart></FilledCart>}
       </Grid>
     </main>

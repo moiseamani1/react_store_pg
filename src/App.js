@@ -21,6 +21,7 @@ import Search from './components/Search/Search';
 import Modal from 'react-awesome-modal';
 import Newsletter from './components/Newsletter/Newsletter';
 import ScrollToTop from './helper/ScrollToTop';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const App = () => {
   const classes = useStyles();
@@ -131,14 +132,16 @@ const App = () => {
   useEffect(() => {}, [products]);
 
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://js.squareup.com/v2/paymentform';
-    script.type = 'text/javascript';
-    script.async = false;
-    script.onload = () => {
-      setLoaded(true);
-    };
-    document.getElementsByTagName('head')[0].appendChild(script);
+    setLoaded(true);
+    // const script = document.createElement('script');
+    // // https://web.squarecdn.com/v1/square.js
+    // script.src = 'https://js.squareup.com/v2/paymentform';
+    // script.type = 'text/javascript';
+    // script.async = false;
+    // script.onload = () => {
+    //   setLoaded(true);
+    // };
+    // document.getElementsByTagName('head')[0].appendChild(script);
   }, []);
 
   const openModal = () => {
@@ -150,8 +153,9 @@ const App = () => {
   };
 
   return (
+    <ThemeProvider theme={createTheme()}>
     <Router>
-      <div class="container">
+      <div className="container">
         {/* <Modal   visible={visible} width="400" height="300" effect="fadeInUp" onClickAway={() => closeModal()}>
                     <div id='newsletterPopup'>
                     <a id="close" href="javascript:void(0);" onClick={() => closeModal()}>Close</a>
@@ -234,7 +238,7 @@ const App = () => {
           <Legal></Legal>
         </div>
       </div>
-    </Router>
+    </Router></ThemeProvider>
   );
 };
 

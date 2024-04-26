@@ -9,7 +9,7 @@ import {
   CircularProgress,
   Divider,
   Button,
-} from '@material-ui/core';
+} from '@mui/material';
 import { Link, useHistory } from 'react-router-dom';
 
 import useStyles from './styles.js';

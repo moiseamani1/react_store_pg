@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import useStyles from './styles';
-import { Typography, IconButton } from '@material-ui/core';
-import { KeyboardArrowDown, KeyboardArrowUp } from '@material-ui/icons';
+import { Typography, IconButton } from '@mui/material';
+import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 const Question = ({ question, answer }) => {
   const classes = useStyles();
 
@@ -31,7 +31,7 @@ const Question = ({ question, answer }) => {
           </Typography>
         </div>
         <div className={classes.innerContent}>
-          <IconButton aria-label="view">
+          <IconButton aria-label="view" size="large">
             {isVisible === question ? (
               <KeyboardArrowUp className={classes.arrow} />
             ) : (

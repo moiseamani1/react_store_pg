@@ -1,6 +1,6 @@
 import React from 'react';
 import useStyles from './styles';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Typography } from '@mui/material';
 
 const Legal = () => {
   const classes = useStyles();
@@ -9,7 +9,7 @@ const Legal = () => {
       <div className={classes.row}>
         <div className={classes.legal}>
           <Typography variant="body1" color="inherit">
-            &copy; 2022 ESSENCE Inc. All right reserved
+            &copy; 2024 ESSENCE Inc. All right reserved
           </Typography>
         </div>
         <div className={classes.legal}>

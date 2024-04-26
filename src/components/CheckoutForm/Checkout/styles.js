@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 
 export default makeStyles((theme) => ({
   appBar: {
@@ -8,38 +8,38 @@ export default makeStyles((theme) => ({
   layout: {
     marginTop: '5%',
     width: 'auto',
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
+    marginLeft: '1rem',
+    marginRight: '1rem',
+    [theme.breakpoints.up(600 + '1rem' * 2)]: {
       width: 600,
       marginLeft: 'auto',
       marginRight: 'auto',
     },
   },
   paper: {
-    marginTop: theme.spacing(3),
-    marginBottom: theme.spacing(3),
-    padding: theme.spacing(2),
-    [theme.breakpoints.down('xs')]: {
+    marginTop: '1.5rem',
+    marginBottom: '1.5rem',
+    padding: '1rem',
+    [theme.breakpoints.down('sm')]: {
       width: '100%',
       marginTop: 60,
     },
-    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
-      marginTop: theme.spacing(6),
-      marginBottom: theme.spacing(6),
-      padding: theme.spacing(3),
+    [theme.breakpoints.up(600 + '1.5rem' * 2)]: {
+      marginTop: '3rem',
+      marginBottom: '3rem',
+      padding: '1.5rem',
     },
   },
   stepper: {
-    padding: theme.spacing(3, 0, 5),
+    padding: '3rem 0rem 5rem',
   },
   buttons: {
     display: 'flex',
     justifyContent: 'flex-end',
   },
   button: {
-    marginTop: theme.spacing(3),
-    marginLeft: theme.spacing(1),
+    marginTop: '1.5rem',
+    marginLeft: '0.5rem',
   },
   divider: {
     margin: '20px 0',

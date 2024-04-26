@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import useStyles from './styles';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Typography } from '@mui/material';
 import SearchBar from 'material-ui-search-bar';
 import Product from '../Products/Product/Product';
 
@@ -43,7 +43,7 @@ const Search = ({ products, addToCart }) => {
           <Typography align={'center'} variant="h6" color="inherit">
             {searchResults.length} search Result(s)
           </Typography>
-          <Grid container justify={'center'} spacing={3} direction="row">
+          <Grid container justifyContent={'center'} spacing={3} direction="row">
             {searchResults.map((product) => (
               <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
                 <Product product={product} addToCart={addToCart}></Product>

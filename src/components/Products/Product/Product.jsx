@@ -6,11 +6,12 @@ import {
   CardActions,
   Typography,
   IconButton,
-  createMuiTheme,
+  createTheme,
   ThemeProvider,
+  StyledEngineProvider,
   responsiveFontSizes,
-} from '@material-ui/core';
-import { AddShoppingCart, CallMissedSharp } from '@material-ui/icons';
+} from '@mui/material';
+import { AddShoppingCart, CallMissedSharp } from '@mui/icons-material';
 
 import useStyles from './styles';
 import { Link, useLocation } from 'react-router-dom';
@@ -20,7 +21,7 @@ const Product = ({ product, addToCart }) => {
 
   console.log(product);
 
-  let theme = createMuiTheme();
+  let theme = createTheme();
   theme = responsiveFontSizes(theme);
 
   return (
@@ -34,27 +35,29 @@ const Product = ({ product, addToCart }) => {
       />
       <CardContent>
         <div className="classes.cardContent">
-          <ThemeProvider theme={theme}>
-            <Link to={`/product/${product.id}`}>
-              <Typography
-                className={classes.prodName}
-                variant="h5"
-                gutterBottom
-              >
-                {product.name}
-              </Typography>
-            </Link>
+          <StyledEngineProvider injectFirst>
+            <ThemeProvider theme={theme}>
+              <Link to={`/product/${product.id}`}>
+                <Typography
+                  className={classes.prodName}
+                  variant="h5"
+                  gutterBottom
+                >
+                  {product.name}
+                </Typography>
+              </Link>
 
-            <Typography variant="h5">
-              {product.price.formatted_with_symbol}
-            </Typography>
-          </ThemeProvider>
+              <Typography variant="h5">
+                {product.price.formatted_with_symbol}
+              </Typography>
+            </ThemeProvider>
+          </StyledEngineProvider>
 
           <CardActions disableSpacing className={classes.cardActions}>
             <IconButton
               aria-label="Add to Cart"
               onClick={() => addToCart(product.id, 1)}
-            >
+              size="large">
               <AddShoppingCart></AddShoppingCart>
             </IconButton>
           </CardActions>

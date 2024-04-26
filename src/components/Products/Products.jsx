@@ -1,5 +1,5 @@
 import React, { useEffect, useStae } from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import Product from './Product/Product';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
@@ -30,7 +30,7 @@ const Products = ({ products, addToCart, handleSort, selectedOption }) => {
         placeholder="Select an option"
       />
 
-      <Grid container justify="center">
+      <Grid container justifyContent="center">
         {products.map((product) => (
           <Grid item key={product.id} xs={6} sm={6} md={4} lg={3}>
             <Product product={product} addToCart={addToCart}></Product>

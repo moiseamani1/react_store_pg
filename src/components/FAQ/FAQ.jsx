@@ -4,14 +4,15 @@ import useStyles from './styles';
 import {
   Grid,
   Typography,
-  createMuiTheme,
+  createTheme,
   responsiveFontSizes,
   ThemeProvider,
-} from '@material-ui/core';
+  StyledEngineProvider,
+} from '@mui/material';
 import Question from './Question/Question';
 const FAQ = () => {
   const classes = useStyles();
-  let theme = createMuiTheme();
+  let theme = createTheme();
   theme = responsiveFontSizes(theme);
 
   const faq = {
@@ -30,22 +31,24 @@ const FAQ = () => {
   return (
     <main className={classes.content}>
       <div className={classes.toolbar}></div>
-      <ThemeProvider theme={theme}>
-        <Typography className={classes.location} variant="h2" gutterBottom>
-          FAQ
-        </Typography>
-        <Grid container justify="center" direction="column">
-          <div className={classes.gridSection}>
-            {Object.entries(faq).map(([key, value]) => (
-              <Grid className={classes.item} item key={key} xs={12} sm={6}>
-                <Question question={key} answer={value}></Question>
-              </Grid>
-            ))}
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <Typography className={classes.location} variant="h2" gutterBottom>
+            FAQ
+          </Typography>
+          <Grid container justifyContent="center" direction="column">
+            <div className={classes.gridSection}>
+              {Object.entries(faq).map(([key, value]) => (
+                <Grid className={classes.item} item key={key} xs={12} sm={6}>
+                  <Question question={key} answer={value}></Question>
+                </Grid>
+              ))}
 
-            <Grid item xs={12} sm={6}></Grid>
-          </div>
-        </Grid>
-      </ThemeProvider>
+              <Grid item xs={12} sm={6}></Grid>
+            </div>
+          </Grid>
+        </ThemeProvider>
+      </StyledEngineProvider>
     </main>
   );
 };
