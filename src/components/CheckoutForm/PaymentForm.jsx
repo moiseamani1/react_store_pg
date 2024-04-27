@@ -3,8 +3,12 @@ import { Typography, Button } from '@mui/material';
 
 import Review from './Review';
 
-import Square from './Square';
-import { CreditCard, GooglePay, ApplePay, PaymentForm as PayForm } from 'react-square-web-payments-sdk';
+import {
+  CreditCard,
+  GooglePay,
+  ApplePay,
+  PaymentForm as PayForm,
+} from 'react-square-web-payments-sdk';
 
 const PaymentForm = ({
   checkoutToken,
@@ -24,9 +28,6 @@ const PaymentForm = ({
       </Typography>
       <br />
       <br />
-      <Button variant="outlined" onClick={backStep}>
-        Back
-      </Button>
       {/* {loaded && (
         <Square
           onCaptureCheckout={onCaptureCheckout}
@@ -40,54 +41,78 @@ const PaymentForm = ({
         </Square>
       )} */}
 
-<PayForm
-    /**
-     * Identifies the calling form with a verified application ID generated from
-     * the Square Application Dashboard.
-     */
-    applicationId={checkoutToken.gateways.square.settings.application_id}
-    /**
-     * Invoked when payment form receives the result of a tokenize generation
-     * request. The result will be a valid credit card or wallet token, or an error.
-     * 
-     * 
-     * 
-     * 
-     */
-    cardTokenizeResponseReceived={(token, buyer) => {
-      console.info({ token, buyer });
-    }}
-    /**
-     * This function enable the Strong Customer Authentication (SCA) flow
-     *
-     * We strongly recommend use this function to verify the buyer and reduce
-     * the chance of fraudulent transactions.
-     */
-    createVerificationDetails={() => ({
-      amount: '0.50',
-      /* collected from the buyer */
-      billingContact: {
-        addressLines: ['123 Main Street', 'Apartment 1'],
-        familyName: 'Doe',
-        givenName: 'John',
-        countryCode: 'CA',
-        city: 'Calgary',
-      },
-      currencyCode: 'CAD',
-      intent: 'CHARGE',
-    })}
-
-    //createPaymentRequest
-    /**
-     * Identifies the location of the merchant that is taking the payment.
-     * Obtained from the Square Application Dashboard - Locations tab.
-     */
-    locationId={checkoutToken.gateways.square.settings.location_id}
-  >
-    <CreditCard />
-    {/* <GooglePay /> */}
-    {/* <ApplePay /> */}
-  </PayForm>
+      <PayForm
+        /**
+         * Identifies the calling form with a verified application ID generated from
+         * the Square Application Dashboard.
+         */
+        applicationId={checkoutToken.gateways.square.settings.application_id}
+        /**
+         * Invoked when payment form receives the result of a tokenize generation
+         * request. The result will be a valid credit card or wallet token, or an error.
+         *
+         *
+         *
+         *
+         */
+        cardTokenizeResponseReceived={(token, buyer) => {
+          console.info({ token, buyer });
+        }}
+        /**
+         * This function enable the Strong Customer Authentication (SCA) flow
+         *
+         * We strongly recommend use this function to verify the buyer and reduce
+         * the chance of fraudulent transactions.
+         */
+        createVerificationDetails={() => ({
+          amount: '1',
+          /* collected from the buyer */
+          billingContact: {
+            addressLines: ['123 Main Street', 'Apartment 1'],
+            familyName: 'Doe',
+            givenName: 'John',
+            countryCode: 'CA',
+            city: 'Calgary',
+          },
+          currencyCode: 'CAD',
+          intent: 'CHARGE',
+        })}
+        createPaymentRequest={() => ({
+          requestShippingContact: true,
+          requestBillingInfo: true,
+          currencyCode: 'CAD',
+          countryCode: 'CA',
+          total: {
+            label: 'MERCHANT NAME',
+            amount: '1',
+            pending: false,
+          },
+          lineItems: [
+            {
+              label: 'Subtotal',
+              amount: '0.8',
+              pending: false,
+            },
+            {
+              label: 'Tax',
+              amount: '0.2',
+              pending: false,
+            },
+          ],
+        })}
+        /**
+         * Identifies the location of the merchant that is taking the payment.
+         * Obtained from the Square Application Dashboard - Locations tab.
+         */
+        locationId={checkoutToken.gateways.square.settings.location_id}
+      >
+        <GooglePay />
+        <ApplePay />
+        <CreditCard />
+      </PayForm>
+      <Button variant="outlined" onClick={backStep}>
+        Back
+      </Button>
     </>
   );
 };

@@ -235,7 +235,7 @@ export default class Square extends Component {
         },
       },
     };
-    
+
     this.paymentForm = new this.props.paymentForm(config);
     this.paymentForm.build();
   }

@@ -154,9 +154,9 @@ const App = () => {
 
   return (
     <ThemeProvider theme={createTheme()}>
-    <Router>
-      <div className="container">
-        {/* <Modal   visible={visible} width="400" height="300" effect="fadeInUp" onClickAway={() => closeModal()}>
+      <Router>
+        <div className="container">
+          {/* <Modal   visible={visible} width="400" height="300" effect="fadeInUp" onClickAway={() => closeModal()}>
                     <div id='newsletterPopup'>
                     <a id="close" href="javascript:void(0);" onClick={() => closeModal()}>Close</a>
                         <Newsletter/>
@@ -164,81 +164,85 @@ const App = () => {
                        
                     </div>
                 </Modal> */}
-        <div id="main">
-          <Navbar totalItems={cart.total_items}></Navbar>
-          <ScrollToTop />
-          <Switch>
-            <Route exact path="/">
-              <Landing favorites={favorites}></Landing>
-            </Route>
+          <div id="main">
+            <Navbar totalItems={cart.total_items}></Navbar>
+            <ScrollToTop />
+            <Switch>
+              <Route exact path="/">
+                <Landing favorites={favorites}></Landing>
+              </Route>
 
-            <Route exact path="/shop">
-              <Products
-                products={products}
-                addToCart={addToCart}
-                handleUpdateCartQty
-                handleSort={handleSort}
-                selectedOption={selectedOption}
-              ></Products>
-            </Route>
-            <Route exact path="/about">
-              <About />
-            </Route>
+              <Route exact path="/shop">
+                <Products
+                  products={products}
+                  addToCart={addToCart}
+                  handleUpdateCartQty
+                  handleSort={handleSort}
+                  selectedOption={selectedOption}
+                ></Products>
+              </Route>
+              <Route exact path="/about">
+                <About />
+              </Route>
 
-            <Route exact path="/search">
-              <Search products={products} addToCart={addToCart} />
-            </Route>
+              <Route exact path="/search">
+                <Search products={products} addToCart={addToCart} />
+              </Route>
 
-            <Route exact path="/contact">
-              <Contact />
-            </Route>
+              <Route exact path="/contact">
+                <Contact />
+              </Route>
 
-            <Route exact path="/faq">
-              <FAQ />
-            </Route>
+              <Route exact path="/faq">
+                <FAQ />
+              </Route>
 
-            <Route exact path="/returns">
-              <Returns />
-            </Route>
-            <Route exact path="/shipping">
-              <Shipping />
-            </Route>
+              <Route exact path="/returns">
+                <Returns />
+              </Route>
+              <Route exact path="/shipping">
+                <Shipping />
+              </Route>
 
-            <Route exact path="/track">
-              <Track />
-            </Route>
+              <Route exact path="/track">
+                <Track />
+              </Route>
 
-            <Route exact path="/cart">
-              <Cart
-                cart={cart}
-                onUpdateCartQty={handleUpdateCartQty}
-                onRemoveFromCart={handleRemoveFromCart}
-                onEmptyCart={handleEmptyCart}
-              />
-            </Route>
-            <Route path="/checkout" exact>
-              <Checkout
-                cart={cart}
-                order={order}
-                onCaptureCheckout={handleCaptureCheckout}
-                error={errorMessage}
-                loaded={loaded}
-              />
-            </Route>
+              <Route exact path="/cart">
+                <Cart
+                  cart={cart}
+                  onUpdateCartQty={handleUpdateCartQty}
+                  onRemoveFromCart={handleRemoveFromCart}
+                  onEmptyCart={handleEmptyCart}
+                />
+              </Route>
+              <Route path="/checkout" exact>
+                <Checkout
+                  cart={cart}
+                  order={order}
+                  onCaptureCheckout={handleCaptureCheckout}
+                  error={errorMessage}
+                  loaded={loaded}
+                />
+              </Route>
 
-            <Route path="/product/:productId">
-              <ProductDetail cart={cart} addToCart={addToCart}></ProductDetail>
-            </Route>
-          </Switch>
+              <Route path="/product/:productId">
+                <ProductDetail
+                  cart={cart}
+                  addToCart={addToCart}
+                ></ProductDetail>
+              </Route>
+            </Switch>
+          </div>
+
+          <div id="footer">
+            <Payments></Payments>
+            <SiteMap></SiteMap>
+            <Legal></Legal>
+          </div>
         </div>
-
-        <div id="footer">
-          <Payments></Payments>
-          <SiteMap></SiteMap>
-          <Legal></Legal>
-        </div>
-      </div>
-    </Router></ThemeProvider>
+      </Router>
+    </ThemeProvider>
   );
 };
 

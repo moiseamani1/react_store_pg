@@ -100,7 +100,8 @@ const Navbar = ({ totalItems }) => {
             color="inherit"
             component={Link}
             to="/cart"
-            size="large">
+            size="large"
+          >
             <PersonOutline></PersonOutline>
           </IconButton>
         </div>
@@ -112,7 +113,8 @@ const Navbar = ({ totalItems }) => {
               color="inherit"
               component={Link}
               to="/cart"
-              size="large">
+              size="large"
+            >
               <Badge badgeContent={totalItems} color="secondary">
                 <ShoppingCart></ShoppingCart>
               </Badge>
@@ -128,7 +130,8 @@ const Navbar = ({ totalItems }) => {
               color="inherit"
               component={Link}
               to="/search"
-              size="large">
+              size="large"
+            >
               <Search></Search>
             </IconButton>
           ) : (
@@ -155,7 +158,8 @@ const Navbar = ({ totalItems }) => {
             'aria-haspopup': 'true',
             onClick: handleDrawerOpen,
           }}
-          size="large">
+          size="large"
+        >
           <Menu />
         </IconButton>
         <Drawer
@@ -180,7 +184,8 @@ const Navbar = ({ totalItems }) => {
             color="inherit"
             component={Link}
             to="/cart"
-            size="large">
+            size="large"
+          >
             <PersonOutline></PersonOutline>
           </IconButton>
         </div>
@@ -192,7 +197,8 @@ const Navbar = ({ totalItems }) => {
               color="inherit"
               component={Link}
               to="/cart"
-              size="large">
+              size="large"
+            >
               <Badge badgeContent={totalItems} color="secondary">
                 <ShoppingCart></ShoppingCart>
               </Badge>
@@ -208,7 +214,8 @@ const Navbar = ({ totalItems }) => {
               color="inherit"
               component={Link}
               to="/search"
-              size="large">
+              size="large"
+            >
               <Search></Search>
             </IconButton>
           ) : (

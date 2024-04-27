@@ -137,7 +137,8 @@ const SiteMap = () => {
                                 type="submit"
                                 aria-label="delete"
                                 className={classes.newsletterButton}
-                                size="large">
+                                size="large"
+                              >
                                 <ArrowForwardIos />
                               </IconButton>
                             </InputAdornment>

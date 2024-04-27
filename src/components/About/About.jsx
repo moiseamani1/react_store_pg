@@ -36,9 +36,9 @@ const About = () => {
             <Grid item xs={12} sm={6} md={4} lg={3}>
               <div className={classes.gridSection}>
                 <Typography variant="body1" gutterBottom>
-                  This is a demo project where I use React, CommerceJs, Mailchimp
-                  API and Square API to build a fully functional e-commerce store.
-                  My social links are in the sitemap.
+                  This is a demo project where I use React, CommerceJs,
+                  Mailchimp API and Square API to build a fully functional
+                  e-commerce store. My social links are in the sitemap.
                 </Typography>
               </div>
             </Grid>
