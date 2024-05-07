@@ -3,9 +3,9 @@ import useStyles from '../styles/related';
 import { Grid, Typography } from '@mui/material';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import {Product} from '../components';
+import { Product } from '../components';
 
-const Related = ({ related, addToCart,setCart }) => {
+const Related = ({ related, addToCart, setCart }) => {
   const classes = useStyles();
   const responsive = {
     superLargeDesktop: {
@@ -41,9 +41,13 @@ const Related = ({ related, addToCart,setCart }) => {
         </Grid>
         <Grid item xs={12}>
           <Carousel responsive={responsive}>
-            {related.map((product) => (
+            {related.map(product => (
               <div key={product.id}>
-                <Product product={product} addToCart={addToCart} setCart={setCart}></Product>
+                <Product
+                  product={product}
+                  addToCart={addToCart}
+                  setCart={setCart}
+                ></Product>
               </div>
             ))}
           </Carousel>

@@ -13,20 +13,27 @@ import {
 import { Link } from 'react-router-dom';
 
 import useStyles from '../styles/checkout.js';
-import {AddressForm} from '../components';
-import {PaymentForm} from '../components';
+import { AddressForm } from '../components';
+import { PaymentForm } from '../components';
 import { commerce } from '../lib/commerce.js';
 
 const steps = ['Shipping address', 'Payment details'];
-const Checkout = ({ cart, onCaptureCheckout, error, order, loaded,setOrder }) => {
+const Checkout = ({
+  cart,
+  onCaptureCheckout,
+  error,
+  order,
+  loaded,
+  setOrder,
+}) => {
   const classes = useStyles();
 
   const [activeStep, setActiveStep] = useState(0);
   const [checkoutToken, setCheckoutToken] = useState(null);
   const [shippingData, setShippingData] = useState({});
 
-  const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  const nextStep = () => setActiveStep(prevActiveStep => prevActiveStep + 1);
+  const backStep = () => setActiveStep(prevActiveStep => prevActiveStep - 1);
 
   useEffect(() => {
     const generateToken = async () => {
@@ -46,7 +53,7 @@ const Checkout = ({ cart, onCaptureCheckout, error, order, loaded,setOrder }) =>
     generateToken();
   }, [cart]);
 
-  const next = (data) => {
+  const next = data => {
     setShippingData(data);
 
     nextStep();
@@ -115,7 +122,7 @@ const Checkout = ({ cart, onCaptureCheckout, error, order, loaded,setOrder }) =>
             Checkout
           </Typography>
           <Stepper activeStep={activeStep} className={classes.stepper}>
-            {steps.map((step) => {
+            {steps.map(step => {
               return (
                 <Step key={step}>
                   <StepLabel>{step}</StepLabel>

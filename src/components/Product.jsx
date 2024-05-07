@@ -11,7 +11,7 @@ import {
   StyledEngineProvider,
   responsiveFontSizes,
 } from '@mui/material';
-import { AddShoppingCart} from '@mui/icons-material';
+import { AddShoppingCart } from '@mui/icons-material';
 
 import useStyles from '../styles/product';
 import { Link } from 'react-router-dom';

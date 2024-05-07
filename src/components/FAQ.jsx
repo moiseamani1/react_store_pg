@@ -9,7 +9,7 @@ import {
   ThemeProvider,
   StyledEngineProvider,
 } from '@mui/material';
-import {Question} from '../components';
+import { Question } from '../components';
 const FAQ = () => {
   const classes = useStyles();
   let theme = createTheme();

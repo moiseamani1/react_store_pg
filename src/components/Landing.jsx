@@ -10,7 +10,7 @@ import {
   StyledEngineProvider,
   responsiveFontSizes,
 } from '@mui/material';
-import {Featured} from '../components';
+import { Featured } from '../components';
 
 const Landing = ({ favorites }) => {
   const classes = useStyles();
@@ -40,7 +40,7 @@ const Landing = ({ favorites }) => {
         </StyledEngineProvider>
 
         <Grid container justifyContent="center" spacing={4} direction="row">
-          {favorites.map((product) => (
+          {favorites.map(product => (
             <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
               <Featured product={product}></Featured>
             </Grid>

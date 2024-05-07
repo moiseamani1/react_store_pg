@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 
 import { commerce } from '../lib/commerce';
 
-import {FormInput} from '../components';
+import { FormInput } from '../components';
 
 const AddressForm = ({ checkoutToken, next }) => {
   const [shippingCountries, setShippingCountries] = useState([]);
@@ -24,7 +24,7 @@ const AddressForm = ({ checkoutToken, next }) => {
 
   const methods = useForm();
 
-  const fetchShippingCountries = async (checkoutTokenId) => {
+  const fetchShippingCountries = async checkoutTokenId => {
     const { countries } =
       await commerce.services.localeListShippingCountries(checkoutTokenId);
 
@@ -33,7 +33,7 @@ const AddressForm = ({ checkoutToken, next }) => {
     setShippingCountry(Object.keys(countries)[0]);
   };
 
-  const fetchSubdivisions = async (countryCode) => {
+  const fetchSubdivisions = async countryCode => {
     const { subdivisions } =
       await commerce.services.localeListSubdivisions(countryCode);
 
@@ -80,7 +80,7 @@ const AddressForm = ({ checkoutToken, next }) => {
       </Typography>
       <FormProvider {...methods}>
         <form
-          onSubmit={methods.handleSubmit((data) =>
+          onSubmit={methods.handleSubmit(data =>
             next({
               ...data,
               shippingCountry,
@@ -102,11 +102,11 @@ const AddressForm = ({ checkoutToken, next }) => {
               <Select
                 value={shippingCountry}
                 fullWidth
-                onChange={(e) => setShippingCountry(e.target.value)}
+                onChange={e => setShippingCountry(e.target.value)}
               >
                 {Object.entries(shippingCountries)
                   .map(([code, name]) => ({ id: code, label: name }))
-                  .map((item) => (
+                  .map(item => (
                     <MenuItem key={item.id} value={item.id}>
                       {item.label}
                     </MenuItem>
@@ -118,11 +118,11 @@ const AddressForm = ({ checkoutToken, next }) => {
               <Select
                 value={shippingSubdivision}
                 fullWidth
-                onChange={(e) => setShippingSubdivision(e.target.value)}
+                onChange={e => setShippingSubdivision(e.target.value)}
               >
                 {Object.entries(shippingSubdivisions)
                   .map(([code, name]) => ({ id: code, label: name }))
-                  .map((item) => (
+                  .map(item => (
                     <MenuItem key={item.id} value={item.id}>
                       {item.label}
                     </MenuItem>
@@ -134,14 +134,14 @@ const AddressForm = ({ checkoutToken, next }) => {
               <Select
                 value={shippingOption}
                 fullWidth
-                onChange={(e) => setShippingOption(e.target.value)}
+                onChange={e => setShippingOption(e.target.value)}
               >
                 {shippingOptions
-                  .map((sO) => ({
+                  .map(sO => ({
                     id: sO.id,
                     label: `${sO.description} - (${sO.price.formatted_with_symbol})`,
                   }))
-                  .map((item) => (
+                  .map(item => (
                     <MenuItem key={item.id} value={item.id}>
                       {item.label}
                     </MenuItem>

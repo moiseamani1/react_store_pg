@@ -10,10 +10,16 @@ import {
 } from '@mui/material';
 
 import useStyles from '../styles/cart';
-import {CartItem} from '../components';
+import { CartItem } from '../components';
 import { Link } from 'react-router-dom';
 
-const Cart = ({ cart, onEmptyCart, onUpdateCartQty, onRemoveFromCart, setCart }) => {
+const Cart = ({
+  cart,
+  onEmptyCart,
+  onUpdateCartQty,
+  onRemoveFromCart,
+  setCart,
+}) => {
   const classes = useStyles();
 
   let theme = createTheme();
@@ -68,7 +74,7 @@ const Cart = ({ cart, onEmptyCart, onUpdateCartQty, onRemoveFromCart, setCart })
         </div>
       </div>
       <Grid container spacing={3}>
-        {cart.line_items.map((item) => (
+        {cart.line_items.map(item => (
           <>
             <Grid item xs={12} sm={3} key={item.id}>
               <CartItem

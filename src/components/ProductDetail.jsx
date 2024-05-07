@@ -9,9 +9,9 @@ import {
   CircularProgress,
 } from '@mui/material';
 import { useParams } from 'react-router-dom';
-import {Related} from '../components';
+import { Related } from '../components';
 
-const ProductDetail = ({ setCart,addToCart }) => {
+const ProductDetail = ({ setCart, addToCart }) => {
   let { productId } = useParams();
   const [product, setProduct] = useState({});
   const [related, setRelated] = useState([]);
@@ -19,7 +19,7 @@ const ProductDetail = ({ setCart,addToCart }) => {
   const classes = useStyles();
 
   const fetchProduct = async () => {
-    commerce.products.retrieve(productId).then((product) => {
+    commerce.products.retrieve(productId).then(product => {
       console.log(product);
       console.log(product.related_products);
       setProduct(product);

@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import useStyles from '../styles/question';
 import { Typography, IconButton } from '@mui/material';
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
@@ -7,7 +7,7 @@ const Question = ({ question, answer }) => {
 
   const [isVisible, setIsVisible] = useState('');
 
-  const showAnswerHandler = (question) => {
+  const showAnswerHandler = question => {
     if (isVisible) {
       setIsVisible('');
     } else {

@@ -125,11 +125,11 @@ const SiteMap = () => {
                 url={process.env.REACT_APP_MAILCHIMP_URL}
                 render={({ subscribe, status, message }) => (
                   <div>
-                    <form onSubmit={(event) => submit(event, subscribe)}>
+                    <form onSubmit={event => submit(event, subscribe)}>
                       <TextField
                         key="formInput1"
                         value={email}
-                        onInput={(e) => setEmail(e.target.value)}
+                        onInput={e => setEmail(e.target.value)}
                         InputProps={{
                           endAdornment: (
                             <InputAdornment position="end">

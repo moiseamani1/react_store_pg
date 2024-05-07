@@ -36,17 +36,13 @@ const Navbar = ({ cart }) => {
 
   const { mobileView, drawerOpen } = state;
 
-  useEffect(() => {
-    
-  }, [cart.total_items]);
-
-
+  useEffect(() => {}, [cart.total_items]);
 
   useEffect(() => {
     const setResponsiveness = () => {
       return window.innerWidth < 900
-        ? setState((prevState) => ({ ...prevState, mobileView: true }))
-        : setState((prevState) => ({ ...prevState, mobileView: false }));
+        ? setState(prevState => ({ ...prevState, mobileView: true }))
+        : setState(prevState => ({ ...prevState, mobileView: false }));
     };
     setResponsiveness();
     window.addEventListener('resize', () => setResponsiveness());
@@ -148,10 +144,10 @@ const Navbar = ({ cart }) => {
   };
   const displayMobile = () => {
     const handleDrawerOpen = () =>
-      setState((prevState) => ({ ...prevState, drawerOpen: true }));
+      setState(prevState => ({ ...prevState, drawerOpen: true }));
 
     const handleDrawerClose = () =>
-      setState((prevState) => ({ ...prevState, drawerOpen: false }));
+      setState(prevState => ({ ...prevState, drawerOpen: false }));
 
     return (
       <Toolbar>

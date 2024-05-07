@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography, Button } from '@mui/material';
 
-import {Review} from '../components';
+import { Review } from '../components';
 
 import {
   CreditCard,
