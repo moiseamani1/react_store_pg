@@ -16,6 +16,7 @@ import {
   handleCaptureCheckout
 } from './api/api';
 
+
 const App = () => {
   const [products, setProducts] = useState([]);
   const [favorites, setFavorites] = useState([]);
@@ -23,75 +24,6 @@ const App = () => {
   const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
   const [loaded, setLoaded] = useState(false);
-
-  // const fetchFavorites = async () => {
-  //   const { data } = await commerce.products.list({
-  //     category_slug: 'favorite',
-  //   });
-  //   setFavorites(data);
-  // };
-
-  // const fetchProducts = async () => {
-  //   const { data } = await commerce.products.list();
-  //   setProducts(data);
-  // };
-
-  // const fetchCart = async () => {
-  //   const cart = await commerce.cart.retrieve();
-  //   setCart(cart);
-  // };
-  // const addToCart = async (id, quantity) => {
-  //   const item = await commerce.cart.add(id, quantity);
-
-  //   setCart(item.cart);
-  // };
-  // const handleEmptyCart = async () => {
-  //   const response = await commerce.cart.empty();
-
-  //   setCart(response.cart);
-  // };
-
-  // const refreshCart = async () => {
-  //   const newCart = await commerce.cart.refresh();
-
-  //   setCart(newCart);
-  // };
-
-  // const handleUpdateCartQty = async (lineItemId, quantity) => {
-  //   const response = await commerce.cart.update(lineItemId, { quantity });
-
-  //   setCart(response.cart);
-  // };
-
-  // const handleRemoveFromCart = async (lineItemId) => {
-  //   const response = await commerce.cart.remove(lineItemId);
-
-  //   setCart(response.cart);
-  // };
-
-  // const handleCaptureCheckout = async (
-  //   checkoutTokenId,
-  //   newOrder,
-  //   onRefresh,
-  // ) => {
-  //   try {
-  //     const incomingOrder = await commerce.checkout.capture(
-  //       checkoutTokenId,
-  //       newOrder,
-  //     );
-
-  //     console.log(incomingOrder);
-  //     setOrder(incomingOrder);
-
-  //     if (onRefresh) {
-  //       refreshCart();
-  //     }
-  //   } catch (error) {
-  //     setErrorMessage(error.data.error.message);
-  //   }
-  // };
-
-
 
   useEffect(() => {
     fetchProducts().then(setProducts);

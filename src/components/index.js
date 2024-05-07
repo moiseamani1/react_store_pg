@@ -23,6 +23,8 @@ export { default as AddressForm } from './AddressForm';
 export { default as FormInput } from './FormInput';
 export { default as Question } from './Question';
 export { default as Review } from './Review';
+export { default as Map } from './Map';
+
 
 
 

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import useStyles from '../styles/contact';
+import { Map } from '../components';
 import {
   Grid,
   Typography,
@@ -39,7 +40,7 @@ const Contact = () => {
                   cupidatat non proident, sunt in culpa qui officia deserunt
                   mollit anim id est laborum.
                 </Typography>
-                {/* <MyMap></MyMap> */}
+                <Map/>
                 <div className={classes.contactInfo}>
                   <Typography variant="h6" gutterBottom>
                     Location
