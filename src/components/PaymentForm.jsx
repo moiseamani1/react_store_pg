@@ -28,19 +28,7 @@ const PaymentForm = ({
       </Typography>
       <br />
       <br />
-      {/* {loaded && (
-        <Square
-          onCaptureCheckout={onCaptureCheckout}
-          paymentForm={window.SqPaymentForm}
-          shippingData={shippingData}
-          checkoutToken={checkoutToken}
-          backStep={backStep}
-          nextStep={nextStep}
-        >
-          {' '}
-        </Square>
-      )} */}
-
+ 
       <PayForm
         /**
          * Identifies the calling form with a verified application ID generated from
@@ -55,8 +43,43 @@ const PaymentForm = ({
          *
          *
          */
-        cardTokenizeResponseReceived={(token, buyer) => {
-          console.info({ token, buyer });
+        cardTokenizeResponseReceived={(tokenResponse, buyer) => {
+          console.log("Token + Buyer");
+          console.log({ tokenResponse, buyer });
+          const nonce  = tokenResponse.token;
+          console.log("Nonce extracted");
+          console.log(nonce);
+
+          const orderData = {
+            line_items: checkoutToken.live.line_items,
+            customer: {
+              firstname: shippingData.firstName,
+              lastname: shippingData.lastName,
+              email: shippingData.email,
+            },
+            shipping: {
+              name: 'International',
+              street: shippingData.address1,
+              town_city: shippingData.city,
+              county_state: shippingData.shippingSubdivision,
+              postal_zip_code: shippingData.zip,
+              country: shippingData.shippingCountry,
+            },
+            fulfillment: {
+              shipping_method: shippingData.shippingOption,
+            },
+            payment: {
+              gateway: 'square',
+              card: { nonce },
+            },
+          };
+
+          console.log(checkoutToken);
+
+          onCaptureCheckout(checkoutToken.id, orderData, true)
+            .then((val) => {
+              nextStep();
+            })
         }}
         /**
          * This function enable the Strong Customer Authentication (SCA) flow
@@ -77,29 +100,38 @@ const PaymentForm = ({
           currencyCode: 'CAD',
           intent: 'CHARGE',
         })}
-        createPaymentRequest={() => ({
-          requestShippingContact: true,
-          requestBillingInfo: true,
-          currencyCode: 'CAD',
-          countryCode: 'CA',
-          total: {
-            label: 'MERCHANT NAME',
-            amount: '1',
-            pending: false,
-          },
-          lineItems: [
-            {
-              label: 'Subtotal',
-              amount: '0.8',
+
+
+        createPaymentRequest={() => {
+          const subtotal = checkoutToken.live.total.raw;
+          const tax = subtotal * 0.1;
+          const totalAmount = subtotal + tax;
+        
+          return {
+            requestShippingContact: true,
+            requestBillingInfo: true,
+            currencyCode: 'CAD',
+            countryCode: 'CA',
+            total: {
+              label: 'Essence',
+              amount: totalAmount.toString(),
               pending: false,
             },
-            {
-              label: 'Tax',
-              amount: '0.2',
-              pending: false,
-            },
-          ],
-        })}
+            lineItems: [
+              {
+                label: 'Subtotal',
+                amount: subtotal.toString(),
+                pending: false,
+              },
+              {
+                label: 'Tax',
+                amount: tax.toString(),
+                pending: false,
+              },
+            ],
+          };
+        }}
+
         /**
          * Identifies the location of the merchant that is taking the payment.
          * Obtained from the Square Application Dashboard - Locations tab.
@@ -110,6 +142,7 @@ const PaymentForm = ({
         <ApplePay />
         <CreditCard />
       </PayForm>
+      
       <Button variant="outlined" onClick={backStep}>
         Back
       </Button>
