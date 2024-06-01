@@ -22,7 +22,6 @@ const App = () => {
   const [favorites, setFavorites] = useState([]);
   const [cart, setCart] = useState({});
   const [order, setOrder] = useState({});
-  const [errorMessage, setErrorMessage] = useState('');
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -92,10 +91,10 @@ const App = () => {
               <Route path="/checkout" exact>
                 <Checkout
                   cart={cart}
+                  refreshCart={refreshCart}
                   order={order}
                   setOrder={setOrder}
                   onCaptureCheckout={handleCaptureCheckout}
-                  error={errorMessage}
                   loaded={loaded}
                 />
               </Route>

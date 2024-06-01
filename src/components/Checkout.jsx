@@ -20,8 +20,8 @@ import { commerce } from '../lib/commerce.js';
 const steps = ['Shipping address', 'Payment details'];
 const Checkout = ({
   cart,
+  refreshCart,
   onCaptureCheckout,
-  error,
   order,
   loaded,
   setOrder,
@@ -31,6 +31,7 @@ const Checkout = ({
   const [activeStep, setActiveStep] = useState(0);
   const [checkoutToken, setCheckoutToken] = useState(null);
   const [shippingData, setShippingData] = useState({});
+  const [error, setError] = useState('');
 
   const nextStep = () => setActiveStep(prevActiveStep => prevActiveStep + 1);
   const backStep = () => setActiveStep(prevActiveStep => prevActiveStep - 1);
@@ -51,7 +52,7 @@ const Checkout = ({
       }
     };
     generateToken();
-  }, [cart]);
+  }, [cart,order.customer]);
 
   const next = data => {
     setShippingData(data);
@@ -108,7 +109,9 @@ const Checkout = ({
         onCaptureCheckout={onCaptureCheckout}
         order={order}
         setOrder={setOrder}
+        refreshCart={refreshCart}
         loaded={loaded}
+        setError={setError}
       />
     );
 

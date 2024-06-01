@@ -17,8 +17,11 @@ const PaymentForm = ({
   nextStep,
   shippingData,
   order,
+  setOrder,
   cart,
+  refreshCart,
   loaded,
+  setError
 }) => {
   return (
     <>
@@ -77,9 +80,16 @@ const PaymentForm = ({
           console.log(checkoutToken);
 
           onCaptureCheckout(checkoutToken.id, orderData, true)
-            .then((val) => {
+            .then((order) => {
+              console.log("This is the successful order")
+              console.log(order)
+              setOrder(order)
+              refreshCart();
               nextStep();
+             }).catch((error)=>{
+              setError(error.data.error.message);
             })
+            
         }}
         /**
          * This function enable the Strong Customer Authentication (SCA) flow
